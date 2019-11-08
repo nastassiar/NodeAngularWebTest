@@ -16,7 +16,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)'#'$(Build.BinariesDirectory)'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)' # '$(Build.BinariesDirectory)'
     includeRootFolder: true
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory).zip'
@@ -24,7 +24,7 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory).zip'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
