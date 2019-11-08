@@ -7,6 +7,7 @@ In the root directory of the project...
 
 ## Next Steps
 
+Deploy using Azure DevOps!
 
 ### Sample Data
 
