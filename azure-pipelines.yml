@@ -45,7 +45,7 @@ steps:
     azureSubscription: 'MSDN (64622283-fc87-4edf-900d-f0ee873b3d88)'
     appType: 'webAppLinux'
     WebAppName: 'nrnodewebapptest'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     RuntimeStack: 'NODE|8-lts'
     StartupCommand: 'npm start'
 
