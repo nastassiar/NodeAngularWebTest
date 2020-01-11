@@ -18,8 +18,7 @@ steps:
   inputs:
     command: 'custom'
     workingDir: '$(System.DefaultWorkingDirectory)'
-    customCommand: 'run build''
-
+    customCommand: 'run build'
 
 #- task: ArchiveFiles@2
 #  inputs:
