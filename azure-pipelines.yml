@@ -14,39 +14,27 @@ steps:
   inputs:
     command: 'install'
 
-- task: ArchiveFiles@2
+- task: Npm@1
   inputs:
-    rootFolderOrFile: '$(System.DefaultWorkingDirectory)' # '$(Build.BinariesDirectory)'
-    includeRootFolder: false
-    archiveType: 'zip'
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    replaceExistingArchive: true
+    command: 'custom'
+    workingDir: '$(System.DefaultWorkingDirectory)'
+    customCommand: 'run build''
 
 
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      # Write your commands here
-      echo 'Working Directory'
-      echo '$(System.DefaultWorkingDirectory)'
-      echo 'Staging Directory'
-      echo '$(Build.ArtifactStagingDirectory)'
+#- task: ArchiveFiles@2
+#  inputs:
+#    rootFolderOrFile: ' # '$(Build.BinariesDirectory)'
+#    includeRootFolder: false
+#    archiveType: 'zip'
+#    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#    replaceExistingArchive: true
+
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/server'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'MSDN (64622283-fc87-4edf-900d-f0ee873b3d88)'
-    appType: 'webAppLinux'
-    WebAppName: 'nrnodewebapptest'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-    RuntimeStack: 'NODE|8-lts'
-    StartupCommand: 'npm start'
 
 
