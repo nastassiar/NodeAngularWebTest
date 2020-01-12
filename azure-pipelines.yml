@@ -22,7 +22,7 @@ steps:
 
 - task: ArchiveFiles@2
   inputs:
-    rootFolderOrFile: '$(Build.BinariesDirectory)/server'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/server'#'$(Build.BinariesDirectory)/server'
     includeRootFolder: false
     archiveType: 'zip'
     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
